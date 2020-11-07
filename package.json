@@ -5,10 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server"
+    "start": "live-server",
+    "lint:css": "stylelint assets/**/*.css"
   },
   "author": "jonathan forero",
   "license": "ISC",
+  "dependencies": {
+    "stylelint": "13.2.1",
+    "stylelint-config-recommended": "3.0.0",
+    "stylelint-order": "4.1.0"
+  },
   "devDependencies": {
     "live-server": "^1.2.1"
   }
