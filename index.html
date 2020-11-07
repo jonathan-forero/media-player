@@ -34,8 +34,19 @@
         this.media.play();
       };
 
+      MediaPlayer.prototype.pause = function () {
+        this.media.pause();
+      };
+
       const player = new MediaPlayer({ el: video });
-      button.onclick = () => player.play();
+
+      button.onclick = () => {
+        if (video.paused) {
+          player.play();
+        } else {
+          player.pause();
+        }
+      };
     </script>
   </body>
 </html>
