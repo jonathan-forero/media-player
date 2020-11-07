@@ -12,7 +12,7 @@ body {
 }
 
 header {
-  background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+  background-image: linear-gradient(120deg, cyan 0%, lightslategray 100%);
   color: white;
   padding: 3rem 0;
   text-align: center;
