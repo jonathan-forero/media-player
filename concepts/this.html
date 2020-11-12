@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <title>this</title>
+  </head>
+
+  <body>
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Open the browser console</em></p>
+
+    <h1>
+      <code>this</code> refers to an object. The object that is currently
+      running a piece of code.
+    </h1>
+
+    <script>
+      // this - global scope = Window object
+      console.log(`this: ${this}`);
+
+      console.log('----------------------------');
+      console.log('----------------------------');
+      console.log('----------------------------');
+
+      // this - function scope
+      function whoIsThis() {
+        return this;
+      }
+
+      console.log(`whoIsThis(): ${whoIsThis()}`);
+
+      console.log('----------------------------');
+      console.log('----------------------------');
+      console.log('----------------------------');
+
+      // this - function scope with strict mode
+      function whoIsThisStrict() {
+        'use strict';
+        return this;
+      }
+
+      console.log(`whoIsThisStrict(): ${whoIsThisStrict()}`);
+
+      console.log('----------------------------');
+      console.log('----------------------------');
+      console.log('----------------------------');
+
+      // this - Object context
+      const person = {
+        name: 'Chuck',
+        greet: function () {
+          console.log(`Hi I'm ${this.name}`);
+        },
+      };
+
+      person.greet();
+
+      console.log('----------------------------');
+      console.log('----------------------------');
+      console.log('----------------------------');
+
+      // this - extracting object function into a variable
+      const action = person.greet;
+      action(); // this doen't exist
+
+      console.log('----------------------------');
+      console.log('----------------------------');
+      console.log('----------------------------');
+
+      // this - Class context
+      function Person(name) {
+        // this = {}
+        this.name = name;
+      }
+
+      Person.prototype.greet = function () {
+        console.log(`My name is ${this.name}`);
+      };
+
+      const keanu = new Person('Keanu');
+      keanu.greet();
+    </script>
+  </body>
+</html>
