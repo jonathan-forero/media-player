@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Scope</title>
+  </head>
+
+  <body>
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Open the browser console</em></p>
+
+    <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+
+    <script>
+      // Global Scope
+      var message = 'Hello, World!';
+      console.log(message);
+
+      // jQuery Object
+      console.log($);
+
+      // Overwriting $ to a function
+      var $ = function (message) {
+        console.log('Say: ' + message);
+      };
+      $('hola');
+
+      console.log('----------------------------');
+      console.log('----------------------------');
+      console.log('----------------------------');
+
+      // Function Scope
+      function printNumbers() {
+        for (let i = 0; i < 10; i++) {
+          function eventuallyPrintNumber(n) {
+            setTimeout(function () {
+              console.log(n);
+            }, 100);
+          }
+
+          // i variable is in printNumbers function scope
+          eventuallyPrintNumber(i);
+        }
+      }
+
+      printNumbers();
+
+      // Block Scope
+      function printNumbers2() {
+        for (let i = 0; i < 10; i++) {
+          setTimeout(function () {
+            console.log(i);
+          }, 100);
+        }
+      }
+
+      printNumbers2();
+
+      // Module Scope
+      // <script type="module" src="/assets/index.js">
+    </script>
+  </body>
+</html>
