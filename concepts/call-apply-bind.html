@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title>
+      Function.prototype.call, Function.prototype.apply, Function.prototype.bind
+    </title>
+  </head>
+
+  <body>
+    <a href="/concepts/">Go back</a>
+    <p><em>Open the browser console</em></p>
+
+    <ul>
+      <li><button class="call-to-action">Learn</button></li>
+      <li><button class="call-to-action">Leran More!</button></li>
+      <li><button class="call-to-action">Never Stop Learning!</button></li>
+    </ul>
+
+    <script>
+      // Call
+      function greet() {
+        console.log(`Hi. I'm ${this.name} ${this.lastname}`);
+      }
+
+      const chuck = {
+        name: 'Chuck',
+        lastname: 'Norris',
+      };
+
+      greet.call(chuck);
+
+      // Call with arguments
+      function walk(meters, direction) {
+        console.log(
+          `${this.name} walks ${meters} meters towards ${direction}.`,
+        );
+      }
+
+      walk.call(chuck, 400, 'north');
+
+      // Apply
+      const values = [800, 'south'];
+      walk.apply(chuck, values);
+
+      /*
+        Call - commas
+        Apply - array
+      */
+
+      // Bind
+      const donald = { name: 'Donald', lastname: 'Trumpeta' };
+      const donaldGreet = greet.bind(donald);
+      donaldGreet();
+
+      const donaldWalks = walk.bind(donald, 2000);
+      donaldWalks('East');
+
+      // Attaching Array forEach to NodeList element
+      const buttons = document.getElementsByClassName('call-to-action');
+
+      // Doesn't work because buttons is NodeList not an Array
+      // buttons.forEach(button => {
+      //   button.onclick = () => alert('Never Stop Learning!');
+      // });
+
+      // NodeList
+      Array.prototype.forEach.call(buttons, button => {
+        button.onclick = () => alert('Never Stop Learning!');
+      });
+    </script>
+  </body>
+</html>
