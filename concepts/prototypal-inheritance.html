@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Prototypal Inheritance</title>
+  </head>
+
+  <body>
+    <a href="/concepts/">Go back</a>
+    <p><em>Open the browser console</em></p>
+
+    <script>
+      function Hero(name) {
+        this.name = name;
+      }
+
+      Hero.prototype.greet = function () {
+        console.log(`Hey, I'm ${this.name}.`);
+      };
+
+      const zelda = new Hero('Zelda');
+
+      // instance properties
+      console.log('Name:', zelda.name);
+
+      // class properties
+      console.log('Greet:', zelda.greet);
+
+      // inheritance properties
+      console.log('toString:', zelda.toString);
+
+      // hasOwnProperty
+      console.log(
+        'zelda.hasOwnProperty("greet"):',
+        zelda.hasOwnProperty('greet'),
+      );
+    </script>
+  </body>
+</html>
