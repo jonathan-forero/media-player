@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Proxy</title>
+  </head>
+
+  <body>
+    <a href="/concepts/">Go back</a>
+    <p><em>Open the browser console</em></p>
+
+    <script src="https://unpkg.com/fast-levenshtein@2.0.6/levenshtein.js"></script>
+    <script>
+      // The Proxy object enables you to create a proxy for another object,
+      // which can intercept and redefine fundamental operations for that object.
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy#Methods_of_the_handler_object
+
+      // Let's create an example where we intercept calls to read a property
+      // If the property exists, we return it
+      // If it doesn't exist, then we suggest one that might work
+
+      // For that we are going to use an algorithm called Levenshtein. (window.Levenshtein.get)
+
+      const target = {
+        red: 'Red',
+        green: 'Green',
+        blue: 'Blue',
+      };
+
+      const handler = {
+        get(obj, prop) {
+          if (prop in obj) {
+            return obj[prop];
+          }
+
+          const suggestion = Object.keys(obj).find(
+            key => Levenshtein.get(key, prop) <= 3,
+          );
+
+          if (suggestion) {
+            console.log(
+              `${prop} was not found. Maybe you meant ${suggestion}?`,
+            );
+          }
+
+          return obj[prop];
+        },
+      };
+
+      const colors = new Proxy(target, handler);
+    </script>
+  </body>
+</html>
