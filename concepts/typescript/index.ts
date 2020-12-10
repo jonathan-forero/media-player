@@ -54,3 +54,27 @@ function fullname(firstName: string, lastName: string = 'Smith'): string {
   return `${firstName} ${lastName}`;
 }
 const myFullName = fullname('Agent');
+
+// Interfaces
+interface Rectangle {
+  width: number;
+  height: number;
+  color: Color;
+}
+
+let rect: Rectangle = {
+  width: 4,
+  height: 6,
+  color: Color.Red,
+};
+
+function area(r: Rectangle) {
+  return r.height * r.height;
+}
+const areaRect = area(rect);
+console.log(areaRect);
+
+rect.toString = function () {
+  return `A rectangle ${this.color}`;
+};
+console.log(rect.toString());
